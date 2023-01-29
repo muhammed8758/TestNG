@@ -1,5 +1,6 @@
-package techproed.tests.excelautamation;
+package techproed.tests.excelautomation;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import techproed.pages.BlueRentalHomePage;
 import techproed.pages.BlueRentalLoginPage;
@@ -8,10 +9,11 @@ import techproed.utilities.Driver;
 import techproed.utilities.ExcelUtils;
 import techproed.utilities.ReusableMethods;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-public class Day23_ExcelLogin {
+public class Day23_ExcelLogin1 {
     BlueRentalHomePage blueRentalHomePage;
     BlueRentalLoginPage blueRentalLoginPage;
     ExcelUtils excelUtils;
@@ -52,7 +54,7 @@ public class Day23_ExcelLogin {
     }
 
     @Test
-    public void customerLogin() {
+    public void customerLogin() throws IOException {
         String path = "./src/test/java/resources/mysmoketestdata.xlsx";
         //   ./ onceki tum dosyalari icer. Relative path
         String sheet = "customer_info";
@@ -71,11 +73,22 @@ public class Day23_ExcelLogin {
             ReusableMethods.waitFor(1);
             // login Butonuna Tikla
             blueRentalLoginPage.loginButton.click();
+            ReusableMethods.waitFor(1);
+            //giris islemi basarili oldugunu gostermek icin assertion
+            ReusableMethods.verifyElementDisplayed(blueRentalHomePage.userID);
+            ReusableMethods.waitFor(1);
+            // her bir giridenn sonra ekran goruntusu alinacak
+            ReusableMethods.getScreenshot("EkranGoruntusu");
+
 
         }
 
     }
 
+    @AfterMethod
+    public void tearDown() {
+        Driver.closeDriver();
+    }
     /*
     sam.walker@bluerentalcars.com	c!fas_art
     kate.brown@bluerentalcars.com	tad1$Fas
