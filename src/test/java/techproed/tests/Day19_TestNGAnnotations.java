@@ -1,27 +1,27 @@
 package techproed.tests;
-
+import org.testng.SkipException;
 import org.testng.annotations.*;
-
 public class Day19_TestNGAnnotations {
     /*
-    @Test : Test case olusturmak icin  kullanilir
-    @Before  ve @After : 5 Before ve 5 after annotation var
-    suite> tests > grup > class > method
-    @BeforeSuite : her bir test suit den once 1 sefer calisir
-    @AfterSuite : her bir test suit den sonra 1 sefer calisir
-    @BeforeTest : her bir testten once (TEST CASE ILE KARISTIRILMAMASI LAZIM) 1 sefer calisir
-    @AfterTest : her bir testten sonra (TEST CASE ILE KARISTIRILMAMASI LAZIM) 1 sefer calisir
-    @BeforeClass : her bir class dan once  1 sefer calisir
-    @AfterClass : her bir class dan sonra  1 sefer calisir
-    @BeforeMethod : her bir @Test annotationdan once tek sefer calisir. Junitteki karsiligi @Before
-    @AfterMethod : her bir @Test annotationdan sonra tek sefer calisir. Junitteki karsiligi @After
-
-    @Ignore : @Test case leri (skip) atlamak icin kullanilir
-    @Test (enable : false)
-
-    TestNG de testlerin okunma sirasi isim sirasina gore calisir.
-    @Test(priorty = 1) : Test Case leri oncelemek icin kullanilir
-
+    @Test : Test case ousturmak icin kullanilir
+    @Before ve @After : 5 Before 5 After anotations var
+    suite > tests > grup > class > method
+    @BeforeSuite : her bir test suite den once 1 sefer calisir
+    @AfterSuite : her bir test suiteden sonra 1 sefer calisir
+    @BeforeTest : her bir testden once(TEST CASE ILE KARISTIRILMAMALI) 1 sefer calisir
+    @AfterTest : her bir testden sonra(TEST CASE ILE KARISTIRILMAMALI) 1 sefer calisir
+    @BeforeClass: her bir classdan once 1 sefer calisir
+    @AfterClass: her bir classdan sonra 1 sefer calisir
+    @BeforeMethod: her bir @Test annotationdan once tek sefer calisir. JUnitdeki karsiligi @Before
+    @AfterMethod: her bir @Test annotationdan sonra tek sefer calisir. JUnitdeki karsiligi @After
+    -------------------------------------------------------------------------------------------
+    @Ignore : @Test caseleri atlamak(skip,ignore) icin kullanilir
+    @Test(enabled = false) : @Test caseleri kullanima kapatmak icin kullanilir
+    ---------------------------------------------------------------------------------------------
+    TestNG de test case ler isim sirasina gore calisir
+    @Test(priority = 1) : Test caseler oncelemek icin kullnalir
+    NOT : default prioriry nin degeri 0 a esittir
+    @Test = @Test(priority = 0)
      */
     @BeforeSuite
     public void beforeSuite(){
@@ -33,7 +33,7 @@ public class Day19_TestNGAnnotations {
     }
     @BeforeGroups
     public void beforeGroups(){
-        System.out.println("Before Group");
+        System.out.println("Before Groups");
     }
     @BeforeClass
     public static void beforeClass(){
@@ -43,14 +43,10 @@ public class Day19_TestNGAnnotations {
     public void beforeMethod(){
         System.out.println("Before Method");
     }
-
-
-
     @AfterSuite
     public void afterSuite(){
         System.out.println("After Suite");
     }
-
     @AfterTest
     public void afterTest(){
         System.out.println("After Test");
@@ -63,32 +59,29 @@ public class Day19_TestNGAnnotations {
     public void afterMethod(){
         System.out.println("After Method");
     }
-
-
-    @Test(priority = 1)
-    public void test7() {
-        System.out.println("Test 1");
+    @Test(priority = 1,groups = "regression-tests")
+    public void test7(){
+        System.out.println("Test 7");
     }
     @Test @Ignore
-    public void test2() {
+    public void test2(){
         System.out.println("Test 2");
     }
-    @Test (enabled = false)
-    public void test3() {
+    @Test(enabled = false,groups = "regression-tests")
+    public void test3(){
         System.out.println("Test 3");
     }
-    @Test(priority = 5)
-    public void test4() {
+    @Test(priority = 4)
+    public void test4(){
         System.out.println("Test 4");
     }
-    @Test
-    public void test5() {
+    @Test(priority = 2)
+    public void test5(){
         System.out.println("Test 5");
     }
-    @Test
-    public void test6() {
+    @Test(priority = -5)
+    public void test6(){
         System.out.println("Test 6");
     }
-
-
+//    test6 >test7 >test5 > test4
 }

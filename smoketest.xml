@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Blu Rental Car Suite" verbose="1">
+    <test name="Smoke Test">
+        <packages>
+            <!-- Not name gecerli bir klasor ismi olmali.
+            klasorun PATH i root dosyasindan baslmali
+             Not : SAVE yapmayi unutma   -->
+            <package name="techproed.tests.dataprovider"></package>
+            <package name="techproed.tests.smoketests"></package>
+        </packages>
+    </test>
+</suite>
+
+<!-- Belirli Klasorleri Run Ettik-->
